@@ -1,22 +1,25 @@
-import { Routes, Route, BrowserRouter as Router } from 'react-router-dom';
-import Header from './components/Header';
-//import Home from './pages/Home/Home';
+import { Routes, Route } from 'react-router-dom';
+import Home from './pages/Home/index';
 //import Login from './pages/Login/Login';
 //import Profile from './pages/profile/Profile';
 //import ProgressPage from './pages/Progress/ProgressPage';
+import Footer from './components/Footer/index';
+import Header from './components/Header/index';
+
+import './sass/main.scss';
 
 
 function App() {
 
   return (
-    <Router>
+    <>
+      <Header />
       <Routes>
-        <Route path="/" element={<Header/>}>
-
-          
-        </Route>
+        <Route exact path="/" element={<Home />} />
+        
       </Routes>
-    </Router>
+      <Footer />
+    </>
   );
 }
 
@@ -30,3 +33,5 @@ export default App;
 <Route path="/profile" element={<Profile />} />
 <Route path="/transaction" element={<ProgressPage />} />
 */
+
+
