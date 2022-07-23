@@ -12,6 +12,7 @@
 .main-nav a {
 	font-weight: bold;
 	color: $color-3;
+	text-decoration: none;
 }
 
 .main-nav a.router-link-exact-active {
@@ -27,7 +28,7 @@
 	text-decoration: underline;
 }
 
-.main-nav-item i {
+i {
 	padding-right: 0.5rem;
 }
 
@@ -40,3 +41,4 @@
 	max-width: 100%;
 	width: 200px;
 }
+

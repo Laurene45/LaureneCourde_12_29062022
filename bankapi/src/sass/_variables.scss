@@ -4,9 +4,11 @@ $color-2: #FFFFFF;
 $color-3: #2c3e50;
 $color-4: #42b983;
 $color-5: #222;
+$color-6: #00bc77;
 
 /*breakpoints*/
 $breakpoints: (
+    mobile-min: 425px,
     tablet-min: 720px,
     laptop-min: 920px,
 

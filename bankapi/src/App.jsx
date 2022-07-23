@@ -1,37 +1,37 @@
 import { Routes, Route } from 'react-router-dom';
+import MainLayout from './layout/index';
 import Home from './pages/Home/index';
-//import Login from './pages/Login/Login';
-//import Profile from './pages/profile/Profile';
+import Login from './pages/Login/index';
+import Profile from './pages/Profile/index';
 //import ProgressPage from './pages/Progress/ProgressPage';
-import Footer from './components/Footer/index';
-import Header from './components/Header/index';
+
+import Guard from './components/Guard';
+import { Provider } from 'react-redux';
+import store from './redux/store';
 
 import './sass/main.scss';
 
-
 function App() {
-
   return (
     <>
-      <Header />
-      <Routes>
-        <Route exact path="/" element={<Home />} />
-        
-      </Routes>
-      <Footer />
+      <Provider store={store}>
+        <Routes>
+          <Route element={<MainLayout />}>
+            <Route index element={<Home />} />
+            <Route path="/login" element={<Login />} />
+            <Route element={<Guard />}>
+              <Route path="/profile" element={<Profile />} />
+            </Route>
+          </Route>
+        </Routes>
+      </Provider>
     </>
   );
 }
 
 export default App;
 
-
-
-
 /*
-<Route path="/login" element={<Login />} />
-<Route path="/profile" element={<Profile />} />
+
 <Route path="/transaction" element={<ProgressPage />} />
 */
-
-

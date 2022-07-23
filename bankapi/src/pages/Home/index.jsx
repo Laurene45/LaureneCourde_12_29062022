@@ -11,7 +11,6 @@ const Home = () => {
   return (
       <main>
       <Banner />
-
       <section className="features">
 				{features.map((feature, index) => (
 					<Features
@@ -23,7 +22,6 @@ const Home = () => {
 					/>
 				))}
 			</section>
-
       </main>
   
   );

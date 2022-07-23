@@ -1,0 +1,92 @@
+import React from 'react';
+import { api } from '../../services/axiosApi';
+import { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { useForm } from 'react-hook-form';
+import { userActions } from '../../redux/userSlice';
+import { useNavigate } from 'react-router-dom';
+
+import { faUserCircle } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+
+import './Login.scss';
+
+const Login = () => {
+  // on fait un dispatch de la fonction setProfile()
+  const dispatch = useDispatch();
+  const [loginError, setLoginError] = useState();
+  // useForm()
+  const { register, formState, handleSubmit } = useForm();
+  const navigate = useNavigate();
+
+
+  // Validate Form
+  const onSubmit = (data) => {
+    api
+      .login(data.username, data.password)
+
+      .then((user) => {
+        //console.log(user);
+        dispatch(userActions.login(user.body.token));
+        dispatch(userActions.setProfile(user));
+        
+        navigate ('/profile');
+
+      })
+      .catch((error) => setLoginError(error.message));
+  };
+
+
+  return (
+    <main className="bg-dark">
+      <section className="sign-in-content">
+        <i className="fa fa-user-circle">
+          <FontAwesomeIcon icon={faUserCircle} />
+        </i>
+        <h1>Sign In</h1>
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <div className="input-wrapper">
+            <label htmlFor="username">Email</label>
+            <input
+              type="text"
+              id="username"
+              {...register('username', {
+                required: true,
+              })}
+            />
+            {formState.errors.username && (
+              <p style={{ color: 'red' }}>Username is required</p>
+            )}
+          </div>
+
+          <div className="input-wrapper">
+            <label htmlFor="password">Password</label>
+            <input
+              type="password"
+              id="password"
+              name="password"
+              {...register('password', { required: true })}
+            />
+          </div>
+          {formState.errors.password && (
+            <p style={{ color: 'red', textAlign: 'left' }}>Invalid password</p>
+          )}
+          {loginError && (
+            <p style={{ color: 'red', textAlign: 'left' }}>{loginError}</p>
+          )}
+
+          <div className="input-remember">
+            <input type="checkbox" id="remember-me" />
+            <label htmlFor="remember-me">Remember me</label>
+          </div>
+
+          <button type="submit" className="sign-in-button">
+            Sign In
+          </button>
+        </form>
+      </section>
+    </main>
+  );
+};
+
+export default Login;
