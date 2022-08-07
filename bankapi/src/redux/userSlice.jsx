@@ -1,33 +1,33 @@
 import { createSlice } from '@reduxjs/toolkit';
-
+import { instance } from '../services/axiosApi';
 
 export const userSlice = createSlice({
-  name: 'app',
+  name: 'user',
   initialState: {
     token: null,
-    firstName:'',
-    lastName:'',
+    firstName: '',
+    lastName: '',
+    
   },
   reducers: {
     login: (state, action) => {
       state.token = action.payload;
+      instance.defaults.headers.common['Authorization'] =
+        'Bearer ' + state.token;
       //console.log(action.payload);
-
     },
+
     logout: (state) => {
       state.token = null;
-  
     },
 
-    setProfile: (state, action) => {
+    setUserInfos: (state, action) => {
       state.firstName = action.payload.firstName;
       state.lastName = action.payload.lastName;
+      
     },
-
-   
-
-
   },
+
 });
 
 const userActions = userSlice.actions;

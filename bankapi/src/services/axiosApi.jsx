@@ -2,45 +2,47 @@ import axios from 'axios';
 
 axios.defaults.baseURL = 'http://localhost:3001/api/v1';
 
-export const api = {
 
+//instance remplace la valeur globale par défaut pour le token
+export const instance = axios.create({
+  headers: {
+    common: {
+      Authorization: 'AUTH_TOKEN_FROM_INSTANCE',
+    },
+  },
+});
+
+export const api = {
   /**
- * Get the profile of the corresponding token
- * @returns
- */
+   * Get the profile of the corresponding token
+   * @returns
+   */
 
   getProfile: () => {
-    axios
-      .post('/user/profile',
-        {},
-        /*{
-          headers: { Authorization: 'Bearer ' + localStorage.getItem('token') },
-        }*/
-      )
-
-      .then((response) => {
-        response.data.body;
-      });
+    return (
+      instance
+      .post('/user/profile')
       
+      .then((response) => response.data.body)
+    );
   },
-
-
+ 
   /**
- * Get the connexion token
- * @param {string} email
- * @param {string} password
- * @returns
- */
+   * Get the connexion token
+   * @param {string} email
+   * @param {string} password
+   * @returns
+   */
 
   login: (email, password) => {
     return (
-      axios
+      instance
         //méthode post
         .post('/user/login', {
           email,
           password,
         })
-        .then((response) => response.data )
+        .then((response) => response.data)
 
         .catch((error) => {
           error.response.data;
@@ -48,35 +50,26 @@ export const api = {
     );
   },
 
-  
   /**
- * Update the profile of the corresponding token
- * @param {string} firstName
- * @param {string} lastName
- * @returns
- */
+   * Update the profile of the corresponding token
+   * @param {string} firstName
+   * @param {string} lastName
+   * @returns
+   */
 
   updateProfile: (firstName, lastName) => {
     return (
-      axios
+      instance
         //méthode Put
         .put(
           '/user/profile',
           {
             firstName,
             lastName,
-          },
-          /*{
-            headers: {
-              Authorization: 'Bearer ' + localStorage.getItem('token'),
-            },
-          }*/
+          }
         )
-        .then((response) => {
-          response.data.body;
-        })
+        .then((response) => response.data.body)
     );
   },
 };
-
 
