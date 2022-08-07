@@ -7,15 +7,15 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router';
 import { userActions } from '../../redux/userSlice';
 
-
 import { faUserCircle } from '@fortawesome/free-solid-svg-icons';
 import { faSignOut } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const Header = () => {
-  const { token } = useSelector((state) => state.app);
-  const { firstName } = useSelector((state) => state.app);
+  const { token } = useSelector((state) => state.user);
+  const { firstName } = useSelector((state) => state.user);
 
+  
   const dispatch = useDispatch();
   const navigate = useNavigate();
 

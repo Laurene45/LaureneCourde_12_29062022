@@ -11,7 +11,7 @@ import { useSelector } from 'react-redux';
 // les utilisateurs peuvent visiter en fonction de leur connexion.
 
 const Guard = () => {
-    const { token } = useSelector((state) => state.app);
+    const { token } = useSelector((state) => state.user);
 
     return (
 

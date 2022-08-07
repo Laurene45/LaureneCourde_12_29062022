@@ -6,6 +6,7 @@ import { useForm } from 'react-hook-form';
 import { userActions } from '../../redux/userSlice';
 import { useNavigate } from 'react-router-dom';
 
+
 import { faUserCircle } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
@@ -15,6 +16,7 @@ const Login = () => {
   // on fait un dispatch de la fonction setProfile()
   const dispatch = useDispatch();
   const [loginError, setLoginError] = useState();
+
   // useForm()
   const { register, formState, handleSubmit } = useForm();
   const navigate = useNavigate();
@@ -23,14 +25,24 @@ const Login = () => {
   // Validate Form
   const onSubmit = (data) => {
     api
-      .login(data.username, data.password)
-
+      .login(data.username, data.password, data.firstName)
       .then((user) => {
         //console.log(user);
         dispatch(userActions.login(user.body.token));
-        dispatch(userActions.setProfile(user));
+        //console.log(userActions.login(user.body.token));
+
+        api.getProfile(user.body);
+        console.log(api.getProfile());
+       
+      
+        dispatch(userActions.setUserInfos(user.body));
+        console.log(userActions.setUserInfos(user.body));
         
         navigate ('/profile');
+
+        //getprofile
+        //dispatch
+  
 
       })
       .catch((error) => setLoginError(error.message));
