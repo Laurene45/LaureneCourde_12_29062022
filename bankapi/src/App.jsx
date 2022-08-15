@@ -6,6 +6,7 @@ import Login from './pages/Login/index';
 import Profile from './pages/Profile/index';
 import Transactions from './pages/Transactions/index';
 import Guard from './components/Guard';
+import Error from './pages/Error/index';
 
 import { Provider } from 'react-redux';
 import store from './redux/store';
@@ -24,6 +25,7 @@ function App() {
               <Route path="/profile" element={<Profile />} />
               <Route path="/transactions" element={<Transactions />} />
             </Route>
+            <Route path="/*" element={<Error />} />
           </Route>
         </Routes>
       </Provider>
