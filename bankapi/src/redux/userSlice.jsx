@@ -7,8 +7,8 @@ export const userSlice = createSlice({
     token: null,
     firstName: '',
     lastName: '',
-    
   },
+
   reducers: {
     login: (state, action) => {
       state.token = action.payload;
@@ -22,12 +22,11 @@ export const userSlice = createSlice({
     },
 
     setUserInfos: (state, action) => {
+      console.log(action);
       state.firstName = action.payload.firstName;
       state.lastName = action.payload.lastName;
-      
     },
   },
-
 });
 
 const userActions = userSlice.actions;

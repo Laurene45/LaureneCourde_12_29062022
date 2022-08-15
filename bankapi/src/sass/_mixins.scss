@@ -1,4 +1,4 @@
-/*tablette et pc : responsives*/
+/*responsives*/
 
   @mixin mobile {
     @media screen and (min-width: map-get($breakpoints, mobile-min)) {
@@ -16,6 +16,18 @@
   
   @mixin laptop {
     @media screen and (min-width: map-get($breakpoints, laptop-min)) {
+      @content;
+    }
+  }
+
+  @mixin laptop2 {
+    @media screen and (min-width: map-get($breakpoints, laptop)) {
+      @content;
+    }
+  }
+
+  @mixin laptop3 {
+    @media screen and (min-width: map-get($breakpoints, laptop-xl)) {
       @content;
     }
   }

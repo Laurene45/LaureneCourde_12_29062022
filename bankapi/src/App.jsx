@@ -1,11 +1,12 @@
 import { Routes, Route } from 'react-router-dom';
+
 import MainLayout from './layout/index';
 import Home from './pages/Home/index';
 import Login from './pages/Login/index';
 import Profile from './pages/Profile/index';
-//import ProgressPage from './pages/Progress/ProgressPage';
-
+import Transactions from './pages/Transactions/index';
 import Guard from './components/Guard';
+
 import { Provider } from 'react-redux';
 import store from './redux/store';
 
@@ -21,6 +22,7 @@ function App() {
             <Route path="/login" element={<Login />} />
             <Route element={<Guard />}>
               <Route path="/profile" element={<Profile />} />
+              <Route path="/transactions" element={<Transactions />} />
             </Route>
           </Route>
         </Routes>

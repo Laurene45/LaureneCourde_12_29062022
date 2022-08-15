@@ -2,7 +2,6 @@ import axios from 'axios';
 
 axios.defaults.baseURL = 'http://localhost:3001/api/v1';
 
-
 //instance remplace la valeur globale par défaut pour le token
 export const instance = axios.create({
   headers: {
@@ -19,14 +18,12 @@ export const api = {
    */
 
   getProfile: () => {
-    return (
-      instance
+    return instance
       .post('/user/profile')
-      
-      .then((response) => response.data.body)
-    );
+
+      .then((response) => response.data);
   },
- 
+
   /**
    * Get the connexion token
    * @param {string} email
@@ -61,15 +58,11 @@ export const api = {
     return (
       instance
         //méthode Put
-        .put(
-          '/user/profile',
-          {
-            firstName,
-            lastName,
-          }
-        )
-        .then((response) => response.data.body)
+        .put('/user/profile', {
+          firstName,
+          lastName,
+        })
+        .then((response) => response.data)
     );
   },
 };
-
