@@ -5,6 +5,7 @@
 .features {
 	display: flex;
 	flex-direction: column;
+
 	@include laptop {
 		flex-direction: row;
 	}

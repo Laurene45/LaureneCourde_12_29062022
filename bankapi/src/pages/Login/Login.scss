@@ -1,20 +1,19 @@
 @import "../../sass/variables";
 @import "../../sass/mixins";
+@import "../../sass/base";
 
 
 .error_login {
-    color: red;
+    color: $color-7;
 }
 
-
 .bg-dark {
-    background-color: #12002b;
+    background-color: $color-8;
     padding: 1.5rem 6rem 10rem 6rem;
 
     @include mobile {
         padding: 1.5rem 0rem 10rem 0rem;
     }
-
 }
 
 .sign-in-content {
@@ -26,37 +25,31 @@
 }
 
 .sign-in-button {
-    display: block;
-    width: 100%;
-    padding: 8px;
-    font-size: 1.1rem;
-    font-weight: bold;
     margin-top: 1rem;
-    border-color: $color-6;
-    background-color: $color-6;
-    color: $color-2;
+    width: 100%;
 }
 
 .input-remember {
     display: flex;
+
+    label {
+        margin-left: 0.25rem;
+    }
 }
 
-.input-remember label {
-    margin-left: 0.25rem;
-}
 
 .input-wrapper {
     display: flex;
     flex-direction: column;
     text-align: left;
     margin-bottom: 1rem;
-}
 
-.input-wrapper label {
-    font-weight: bold;
-}
+    label {
+        font-weight: bold;
+    }
 
-.input-wrapper input {
-    padding: 5px;
-    font-size: 1.2rem;
+    input {
+        padding: 5px;
+        font-size: 1.2rem;
+    }
 }

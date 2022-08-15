@@ -6,14 +6,12 @@ import { useForm } from 'react-hook-form';
 import { userActions } from '../../redux/userSlice';
 import { useNavigate } from 'react-router-dom';
 
-
 import { faUserCircle } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import './Login.scss';
 
 const Login = () => {
-  // on fait un dispatch de la fonction setProfile()
   const dispatch = useDispatch();
   const [loginError, setLoginError] = useState();
 
@@ -21,33 +19,22 @@ const Login = () => {
   const { register, formState, handleSubmit } = useForm();
   const navigate = useNavigate();
 
-
   // Validate Form
   const onSubmit = (data) => {
     api
-      .login(data.username, data.password, data.firstName)
+      .login(data.username, data.password)
       .then((user) => {
         //console.log(user);
         dispatch(userActions.login(user.body.token));
         //console.log(userActions.login(user.body.token));
 
-        api.getProfile(user.body);
-        console.log(api.getProfile());
-       
-      
-        dispatch(userActions.setUserInfos(user.body));
-        console.log(userActions.setUserInfos(user.body));
-        
-        navigate ('/profile');
-
-        //getprofile
-        //dispatch
-  
-
+        api.getProfile().then((userInfos) => {
+          dispatch(userActions.setUserInfos(userInfos.body));
+          navigate('/profile');
+        });
       })
       .catch((error) => setLoginError(error.message));
   };
-
 
   return (
     <main className="bg-dark">

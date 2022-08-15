@@ -5,25 +5,23 @@ import { features } from '../../datas/dataFeatures';
 
 import './Home.scss';
 
-
-
 const Home = () => {
   return (
-      <main>
+    <main>
       <Banner />
       <section className="features">
-				{features.map((feature, index) => (
-					<Features
-						key={index}
-						img={feature.img}
-						alt={feature.alt}
-						title={feature.title}
-						text={feature.text}
-					/>
-				))}
-			</section>
-      </main>
-  
+        {features.map((feature, index) => (
+          <Features
+            key={index}
+            img={feature.img}
+            alt={feature.alt}
+            title={feature.title}
+            text={feature.text}
+          />
+        ))}
+      </section>
+    </main>
   );
 };
+
 export default Home;
