@@ -1,11 +1,24 @@
 import { useState } from 'react';
+
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faAngleUp } from '@fortawesome/free-solid-svg-icons';
 import { faAngleDown } from '@fortawesome/free-solid-svg-icons';
 import { faPencil } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import PropTypes from 'prop-types';
 import './TransactionContent.scss';
+
+/** @function manage the content part of the transaction's infos based on the user's info received from the database.
+ *
+ * @component
+ * @param {string} date
+ * @param {string} amount
+ * @param {string} descr
+ * @param {string} balance
+ * @param {string} transType
+ * @param {string} category
+ * @returns (<TransactionContent/>)
+ */
 
 const TransactionContent = ({
   date,
@@ -17,9 +30,11 @@ const TransactionContent = ({
 }) => {
   const [isUp, setIsUp] = useState(false);
 
-  /**
-   * dropdown details
-   */
+ /** @function show dropdown details
+ *
+ * @returns (openClose())
+ */
+
   const openClose = () => {
     if (!isUp) {
       setIsUp(true);
@@ -28,16 +43,24 @@ const TransactionContent = ({
     }
   };
 
-  /**
-   * alert message when we want to modify the category of the transaction.
-   */
+
+  /** @function show alert message when we want to modify the category of the transaction.
+ *
+ * @alert
+ * @returns (selectCategory())
+ */
+
   const selectCategory = () => {
     alert('Choisir une catégorie');
   };
 
-  /**
-   *  show an alert message when we want to modify the note of the transaction.
-   */
+
+  /** @function show an alert message when we want to modify the note of the transaction.
+ *
+ * @alert
+ * @returns (addNotes())
+ */
+
   const addNotes = () => {
     alert('Ajouter des notes');
   };

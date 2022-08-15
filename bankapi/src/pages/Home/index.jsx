@@ -5,6 +5,12 @@ import { features } from '../../datas/dataFeatures';
 
 import './Home.scss';
 
+
+/** @function create the home page.
+ * 
+ * @returns (<Home/>)
+ */
+
 const Home = () => {
   return (
     <main>

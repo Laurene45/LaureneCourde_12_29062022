@@ -1,15 +1,23 @@
 import React from 'react';
-import { api } from '../../services/axiosApi';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useForm } from 'react-hook-form';
 import { userActions } from '../../redux/userSlice';
 import { useNavigate } from 'react-router-dom';
 
-import { faUserCircle } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faUserCircle } from '@fortawesome/free-solid-svg-icons';
 
+import { api } from '../../services/axiosApi';
 import './Login.scss';
+
+
+/** @function manage the authentication of the user by communicating 
+ * with the database in order to verify the login infos (email/password).
+ * If correct, it navigates to the profile page.
+ *
+ * @returns (<Login/>)
+ */
 
 const Login = () => {
   const dispatch = useDispatch();

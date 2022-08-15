@@ -6,11 +6,19 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router';
 import { userActions } from '../../redux/userSlice';
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUserCircle } from '@fortawesome/free-solid-svg-icons';
 import { faSignOut } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import './Header.scss';
+
+
+/** @function create the header component 
+ * and manage the infos shown based on the user's info recovered from the database.
+ *
+ * @component
+ * @returns (<Header/>)
+ */
 
 const Header = () => {
   const { token } = useSelector((state) => state.user);

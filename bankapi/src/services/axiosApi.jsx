@@ -2,7 +2,8 @@ import axios from 'axios';
 
 axios.defaults.baseURL = 'http://localhost:3001/api/v1';
 
-//instance remplace la valeur globale par défaut pour le token
+
+//instance replace the value default for the token
 export const instance = axios.create({
   headers: {
     common: {
@@ -24,6 +25,7 @@ export const api = {
       .then((response) => response.data);
   },
 
+  
   /**
    * Get the connexion token
    * @param {string} email
@@ -46,6 +48,7 @@ export const api = {
         })
     );
   },
+
 
   /**
    * Update the profile of the corresponding token

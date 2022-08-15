@@ -1,9 +1,17 @@
 import React from 'react';
 import { transactionsTitleData } from '../../datas/dataTransactionsTitle';
 import { transactionsData } from '../../datas/dataTransactions';
+
 import TransactionTitle from '../../components/TransactionTitle/index';
 import TransactionContent from '../../components/TransactionContent/index';
+
 import './Transactions.scss';
+
+
+/** @function create he transaction page based on the user's info recovered from the database.
+ *
+ * @returns (<Transactions/>)
+ */
 
 const Transactions = () => {
   return (

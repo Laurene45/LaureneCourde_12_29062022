@@ -1,7 +1,17 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import './Account.scss';
-import { Link } from 'react-router-dom';
+
+
+/**  @function show account
+ *
+ * @component
+ * @param {string} title
+ * @param {number} amount
+ * @param {string} description
+ * @returns (<Account/>)
+ */
 
 const Account = ({ title, amount, description }) => {
   return (

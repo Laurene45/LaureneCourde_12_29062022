@@ -1,6 +1,13 @@
 import React from 'react';
 import './Banner.scss';
 
+
+/** @function show Banner
+ *
+ * @component
+ * @returns (<Banner/>)
+ */
+
 const Banner = () => {
   return (
     <div className="hero">

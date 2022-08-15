@@ -14,7 +14,6 @@ export const userSlice = createSlice({
       state.token = action.payload;
       instance.defaults.headers.common['Authorization'] =
         'Bearer ' + state.token;
-   
     },
 
     logout: (state) => {
