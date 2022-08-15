@@ -24,10 +24,7 @@ const Login = () => {
     api
       .login(data.username, data.password)
       .then((user) => {
-        //console.log(user);
         dispatch(userActions.login(user.body.token));
-        //console.log(userActions.login(user.body.token));
-
         api.getProfile().then((userInfos) => {
           dispatch(userActions.setUserInfos(userInfos.body));
           navigate('/profile');

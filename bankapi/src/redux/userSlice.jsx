@@ -14,7 +14,7 @@ export const userSlice = createSlice({
       state.token = action.payload;
       instance.defaults.headers.common['Authorization'] =
         'Bearer ' + state.token;
-      //console.log(action.payload);
+   
     },
 
     logout: (state) => {
@@ -22,7 +22,6 @@ export const userSlice = createSlice({
     },
 
     setUserInfos: (state, action) => {
-      console.log(action);
       state.firstName = action.payload.firstName;
       state.lastName = action.payload.lastName;
     },
