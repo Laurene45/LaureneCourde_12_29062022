@@ -57,6 +57,7 @@ paths:
           description: Invalid Fields
         "500":
           description: Internal Server Error
+          
   /user/profile:
     post:
       security:
@@ -82,6 +83,7 @@ paths:
           description: Invalid Fields
         "500":
           description: Internal Server Error
+          
     put:
       security:
         - Bearer: []
@@ -112,7 +114,8 @@ paths:
           description: Invalid Fields
         "500":
           description: Internal Server Error
-  /user/transactions:
+          
+  /user/{accountId}/transactions:
     get:
       tags:
         - Transaction Module
@@ -126,6 +129,12 @@ paths:
           description: Attach Bearer JWT token
           required: true
           type: string
+        - name: "accountId"
+          in: "path"
+          description: "A unique identifier used to identify the account"
+          required: true
+          type: "integer"
+          format: "int64"
       security:
         - Bearer: []
       responses:
@@ -156,46 +165,8 @@ paths:
           description: Internal Server Error
           schema:
             $ref: "#/definitions/TransactionResponse"
-    post:
-      tags:
-        - Transaction Module
-      summary: create a new transaction
-      description: API for creating user account new transaction
-      produces:
-        - application/json
-      parameters:
-        - name: Authorization
-          in: header
-          description: Attach Bearer JWT token
-          required: true
-          type: string
-        - name: "userId"
-          in: body
-          description: "ID of transaction to return"
-          required: true
-          schema:
-            $ref: "#/definitions/TransactionData"
-      security:
-        - Bearer: []
-      responses:
-        "201":
-          description: new transaction successfully created
-          schema:
-            $ref: "#/definitions/TransactionResponse"
-        "400":
-          description: Invalid values
-          schema:
-            $ref: "#/definitions/TransactionResponse"
-        "401":
-          description: Unauthorized
-          schema:
-            $ref: "#/definitions/TransactionResponse"
-        "500":
-          description: Internal Server Error
-          schema:
-            $ref: "#/definitions/TransactionResponse"
-
-  /transactions/{transactionId}:
+            
+  /user/{accountId}/transactions/{transactionId}:
     get:
       tags:
         - Transaction Module
@@ -210,6 +181,12 @@ paths:
           description: Attach Bearer JWT token
           required: true
           type: string
+        - name: "accountId"
+          in: "path"
+          description: "A unique identifier used to identify the account"
+          required: true
+          type: "integer"
+          format: "int64"
         - name: "transactionId"
           in: "path"
           description: "ID of transaction to return"
@@ -231,19 +208,19 @@ paths:
                         type: array
                         description: user account current month transactions
                         items:
-                          $ref: "#/definitions/Transaction"
+                          $ref: "#/definitions/TransactionData"
         "400":
           description: "Invalid ID transaction"
         "404":
           description: "Transaction not found"
       security:
         - Bearer: []
-
+        
     put:
       tags:
         - Transaction Module
-      summary: update a transaction
-      description: API for updating transaction
+      summary: modify a transaction
+      description: API for modify transaction
       operationId: updateTransactionById"
       produces:
         - application/json
@@ -253,18 +230,23 @@ paths:
           description: Attach Bearer JWT token
           required: true
           type: string
-        - name: "transactionId"
-          in: "path"
-          description: "ID of transaction to return"
+        - name: accountId
+          in: path
+          description: A unique identifier used to identify the account
+          required: true
+          type: string
+        - name: transactionId
+          in: path
+          description: ID of transaction to return
           required: true
           type: "integer"
           format: "int64"
         - in: body
           name: body
-          description: Transaction Payload
+          description: Transaction Payload / At least one value must be entered
           required: true
           schema:
-            $ref: "#/definitions/TransactionData"
+            $ref: "#/definitions/UserTransaction"
       security:
         - Bearer: []
       responses:
@@ -284,36 +266,7 @@ paths:
           description: Internal Server Error
           schema:
             $ref: "#/definitions/TransactionResponse"
-    delete:
-      tags:
-        - Transaction Module
-      summary: Delete transaction by id
-      description: API for deleting informations of a selected transaction
-      operationId: deleteTransactionById
-      produces:
-        - "application/json"
-      parameters:
-        - name: Authorization
-          in: header
-          description: Attach Bearer JWT token
-          required: true
-          type: string
-        - name: "transactionId"
-          in: "path"
-          description: "ID of transaction to delete"
-          required: true
-          type: "integer"
-          format: "int64"
-      security:
-        - Bearer: []
-      responses:
-        "200":
-          description: "successful operation"
-        "400":
-          description: Invalid Fields
-        "500":
-          description: Internal Server Error
-
+                  
 securityDefinitions:
   Bearer:
     type: apiKey
@@ -373,15 +326,21 @@ definitions:
       id:
         type: string
         description: unique id
-      title:
+      infoAccount:
         type: string
         description: transaction's name
       amount:
         type: number
         description: transaction's amount
+      date:
+        type: string
+        description: transaction's date
       description:
         type: string
         description: transaction's description
+      balance:
+        type: number
+        description: balance amount
   TransactionResponse:
     type: object
     properties:
@@ -417,3 +376,12 @@ definitions:
       notes:
         type: string
         description: Transaction's notes
+  UserTransaction:
+    properties:
+      category:
+        type: string
+        description: Transaction's category
+      notes:
+        type: string
+        description: Transaction's notes
+  
