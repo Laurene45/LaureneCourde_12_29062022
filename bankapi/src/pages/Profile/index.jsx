@@ -86,6 +86,7 @@ const Profile = () => {
         {accountData.map((account, index) => (
           <Account
             key={index}
+            id={account.id}
             title={account.title}
             amount={account.amount}
             description={account.description}

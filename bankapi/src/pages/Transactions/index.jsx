@@ -6,7 +6,10 @@ import TransactionTitle from '../../components/TransactionTitle/index';
 import TransactionContent from '../../components/TransactionContent/index';
 
 import './Transactions.scss';
-
+import { useParams } from 'react-router-dom';
+import { useState } from 'react';
+import { useEffect } from 'react';
+import { api } from '../../services/axiosApi';
 
 /** @function create he transaction page based on the user's info recovered from the database.
  *
@@ -14,14 +17,21 @@ import './Transactions.scss';
  */
 
 const Transactions = () => {
+  const [transactions, setTransactions] = useState([]);
+  const param = useParams();
+
+  useEffect(() => {
+    const response = api.getTransactionsByAccount(param.id);
+    setTransactions(response);
+  });
+
   return (
     <div>
       {transactionsTitleData.map((account, index) => (
         <TransactionTitle
           key={index}
-          title={account.title}
+          infoAccount={account.infoAccount}
           amount={account.amount}
-          amountDescr={account.amountDescr}
         />
       ))}
 
@@ -51,6 +61,7 @@ const Transactions = () => {
             balance={account.balance}
             transType={account.transType}
             category={account.category}
+            note={account.note}
           />
         ))}
       </main>

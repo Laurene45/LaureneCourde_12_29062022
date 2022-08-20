@@ -23,7 +23,7 @@ function App() {
             <Route path="/login" element={<Login />} />
             <Route element={<Guard />}>
               <Route path="/profile" element={<Profile />} />
-              <Route path="/transactions" element={<Transactions />} />
+              <Route path="/:id/transactions" element={<Transactions />} />
             </Route>
             <Route path="/*" element={<Error />} />
           </Route>

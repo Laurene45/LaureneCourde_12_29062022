@@ -1,7 +1,7 @@
 import axios from 'axios';
+import { transactionsData } from '../datas/dataTransactions';
 
 axios.defaults.baseURL = 'http://localhost:3001/api/v1';
-
 
 //instance replace the value default for the token
 export const instance = axios.create({
@@ -25,7 +25,6 @@ export const api = {
       .then((response) => response.data);
   },
 
-  
   /**
    * Get the connexion token
    * @param {string} email
@@ -49,7 +48,6 @@ export const api = {
     );
   },
 
-
   /**
    * Update the profile of the corresponding token
    * @param {string} firstName
@@ -67,5 +65,16 @@ export const api = {
         })
         .then((response) => response.data)
     );
+  },
+
+  /**
+   * Get transactions by account
+   * @param {string} id
+   * @returns
+   */
+
+  //Mockdatas
+  getTransactionsByAccount: (id) => {
+    return transactionsData;
   },
 };

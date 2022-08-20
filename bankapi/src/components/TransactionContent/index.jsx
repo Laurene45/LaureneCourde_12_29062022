@@ -27,13 +27,14 @@ const TransactionContent = ({
   balance,
   transType,
   category,
+  note
 }) => {
   const [isUp, setIsUp] = useState(false);
 
- /** @function show dropdown details
- *
- * @returns (openClose())
- */
+  /** @function show dropdown details
+   *
+   * @returns (openClose())
+   */
 
   const openClose = () => {
     if (!isUp) {
@@ -43,23 +44,21 @@ const TransactionContent = ({
     }
   };
 
-
   /** @function show alert message when we want to modify the category of the transaction.
- *
- * @alert
- * @returns (selectCategory())
- */
+   *
+   * @alert
+   * @returns (selectCategory())
+   */
 
   const selectCategory = () => {
     alert('Choisir une catégorie');
   };
 
-
   /** @function show an alert message when we want to modify the note of the transaction.
- *
- * @alert
- * @returns (addNotes())
- */
+   *
+   * @alert
+   * @returns (addNotes())
+   */
 
   const addNotes = () => {
     alert('Ajouter des notes');
@@ -99,7 +98,7 @@ const TransactionContent = ({
               </i>
             </p>
             <p>
-              Notes:{' '}
+              Notes: {note}{' '}
               <i className="fa fa-pencil" aria-hidden="true" onClick={addNotes}>
                 <FontAwesomeIcon icon={faPencil} />
               </i>
@@ -118,6 +117,7 @@ TransactionContent.propTypes = {
   balance: PropTypes.string,
   transType: PropTypes.string,
   category: PropTypes.string,
+  note: PropTypes.string,
 };
 
 export default TransactionContent;

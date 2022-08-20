@@ -7,6 +7,7 @@ export const transactionsData = [
     balance: '$2082.79',
     transType: 'Electronic',
     category: 'Food',
+    note: '',
   },
   {
     id: 2,
@@ -16,6 +17,7 @@ export const transactionsData = [
     balance: '$2087.79',
     transType: 'Electronic',
     category: 'Food',
+    note: '',
   },
   {
     id: 3,
@@ -25,6 +27,7 @@ export const transactionsData = [
     balance: '$2097.79',
     transType: 'Electronic',
     category: 'Food',
+    note: '',
   },
   {
     id: 4,
@@ -34,6 +37,7 @@ export const transactionsData = [
     balance: '$2147.79',
     transType: 'Electronic',
     category: 'Food',
+    note: '',
   },
 
   {
@@ -44,5 +48,6 @@ export const transactionsData = [
     balance: '$2187.79',
     transType: 'Electronic',
     category: 'Food',
+    note: '',
   },
 ];
