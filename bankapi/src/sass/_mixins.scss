@@ -32,5 +32,11 @@
     }
   }
   
+  @mixin laptop4 {
+    @media screen and (min-width: map-get($breakpoints, laptop-xxl)) {
+      @content;
+    }
+  }
+    
 
   
