@@ -384,4 +384,5 @@ definitions:
       notes:
         type: string
         description: Transaction's notes
+        
   
