@@ -81,6 +81,10 @@
   }
 
   @include laptop4 {
+    margin-left: 14%;
+  }
+
+  @include laptop5 {
     margin-left: 15%;
   }
 }

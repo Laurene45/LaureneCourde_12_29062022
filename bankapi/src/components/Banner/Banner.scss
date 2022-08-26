@@ -14,6 +14,16 @@
         height: 400px;
         background-position: 0% 33%;
     }
+
+    @include laptop4 {
+        height: 500px;
+        background-position: 0% 33%;
+    }
+
+    @include laptop5 {
+        height: 630px;
+        background-position: 0% 33%;
+    }
 }
 
 .hero-content {
