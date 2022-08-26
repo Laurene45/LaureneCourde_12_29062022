@@ -161,6 +161,10 @@ paths:
           description: Unauthorized
           schema:
             $ref: "#/definitions/TransactionResponse"
+        "404":
+          description: Transactions not found
+          schema:
+            $ref: "#/definitions/TransactionResponse"
         "500":
           description: Internal Server Error
           schema:
@@ -205,14 +209,19 @@ paths:
                     type: object
                     properties:
                       transaction:
-                        type: array
-                        description: user account current month transactions
-                        items:
-                          $ref: "#/definitions/TransactionData"
+                        $ref: "#/definitions/TransactionData"
         "400":
-          description: "Invalid ID transaction"
+          description: Invalid ID transaction
+          schema:
+            $ref: "#/definitions/TransactionResponse"
         "404":
-          description: "Transaction not found"
+          description: Transaction not found
+          schema:
+            $ref: "#/definitions/TransactionResponse"
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: "#/definitions/TransactionResponse"
       security:
         - Bearer: []
         
@@ -260,6 +269,10 @@ paths:
             $ref: "#/definitions/TransactionResponse"
         "401":
           description: Unauthorized
+          schema:
+            $ref: "#/definitions/TransactionResponse"
+        "404":
+          description: Transaction not modify
           schema:
             $ref: "#/definitions/TransactionResponse"
         "500":
@@ -326,9 +339,6 @@ definitions:
       id:
         type: string
         description: unique id
-      infoAccount:
-        type: string
-        description: transaction's name
       amount:
         type: number
         description: transaction's amount
@@ -380,9 +390,11 @@ definitions:
     properties:
       category:
         type: string
+        x-nullable: true
         description: Transaction's category
       notes:
         type: string
+        x-nullable: true
         description: Transaction's notes
         
   
